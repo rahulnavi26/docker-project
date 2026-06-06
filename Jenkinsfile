@@ -3,9 +3,9 @@ agent any
 
 stages {
 
-    stage('Build Docker Image') {
+    stage('Build Backend Docker Image') {
         steps {
-            sh 'docker build -t fastapi-app .'
+            sh 'docker build -t fastapi-app ./backend'
         }
     }
 
@@ -18,7 +18,7 @@ stages {
         }
     }
 
-    stage('Run Container') {
+    stage('Run Backend Container') {
         steps {
             sh '''
             docker run -d \
@@ -32,11 +32,11 @@ stages {
 
 post {
     success {
-        echo 'Deployment Successful!'
+        echo 'Backend Deployment Successful!'
     }
 
     failure {
-        echo 'Deployment Failed!'
+        echo 'Backend Deployment Failed!'
     }
 }
 
